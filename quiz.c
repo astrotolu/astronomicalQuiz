@@ -1,123 +1,189 @@
 #include <stdio.h>
-#include <windows.h>
 #include <string.h>
-#include <time.h>
 
+#define SLOT 4
+
+int menu();
+int setQuestion();
+
+// set structure for multiple questions
 struct quiz
 {
 
-    char Questions[100];
-    char answers[4][100];
+    char question[100];
+    char answer[4][100];
     int correct_answer;
 };
 
 int main()
 {
 
-    struct quiz question[20];
-    int num_question = 0;
-    int i, j, selection;
-    int points;
-    int user_answer;
-    int limitTime = 100;
-    time_t startTime, endTime;
-    double elaspedTime;
+    // struct quiz questions[20];
+    // int numQuestions = 0;
+    // int i, j, selection, user_answer;
+    int selection;
 
-    points = 0;
+    // points = 0;
 
-    printf("\n WELCOME TO THE GAME\n\n\n");
+    // printf("\t\t\t\xB2\xB2\xB2 Welcome to Game \xB2\xB2\xB2\xB2\xB2\xB2\xB2");
 
-    printf("Press 7 to start the game\n");
-    printf("Presss 0 to exit the game\n");
+    // printf("\nPress 7 to go to quiz\n");
+    // printf("Press 0 to quit\n");
+    menu();
     printf("\nEnter selection: ");
-
     scanf("%d", &selection);
 
-    system("clear");
-
-    strcpy(question[num_question].Questions, "Which one is the first serch engine?");
-    strcpy(question[num_question].answers[0], "a) Bing");
-    strcpy(question[num_question].answers[1], "b) Google");
-    strcpy(question[num_question].answers[2], "c) Archie");
-    strcpy(question[num_question].answers[3], "d) Bing");
-    question[num_question].correct_answer = 3;
-    num_question++;
-
-    strcpy(question[num_question].Questions, "What is the capital of France?");
-    strcpy(question[num_question].answers[0], "a) Paris");
-    strcpy(question[num_question].answers[1], "b) Belguim");
-    strcpy(question[num_question].answers[2], "c) Scotland");
-    strcpy(question[num_question].answers[3], "d) Wales");
-    question[num_question].correct_answer = 1;
-    num_question++;
-
-    strcpy(question[num_question].Questions, "What is the largest country in the world?");
-    strcpy(question[num_question].answers[0], "a) USA");
-    strcpy(question[num_question].answers[1], "b) China");
-    strcpy(question[num_question].answers[2], "c) India");
-    strcpy(question[num_question].answers[3], "d) Russia");
-    question[num_question].correct_answer = 4;
-    num_question++;
-
-    time(&startTime);
     if (selection == 7)
     {
 
-        for (i = 0; i < num_question; i++)
-        {
+        // // set questions to array
+        // strcpy(questions[numQuestions].question, "The existence of black holes was predicted by which eminent scientist's 'Theory of General Relativity'?");
+        // strcpy(questions[numQuestions].answer[0], "a) Isaac Newton");
+        // strcpy(questions[numQuestions].answer[1], "b) Albert Einstein");
+        // strcpy(questions[numQuestions].answer[2], "c) Stephen Hawking");
+        // strcpy(questions[numQuestions].answer[3], "d) Galileo Galilei");
+        // questions[numQuestions].correct_answer = 4;
+        // numQuestions++;
 
-            printf("\n%d) %s\n", i + 1, question[i].Questions);
+        // strcpy(questions[numQuestions].question, "A total solar eclipse occurs when…?");
+        // strcpy(questions[numQuestions].answer[0], "a) The Moon moves between the Sun and the Earth");
+        // strcpy(questions[numQuestions].answer[1], "b) The Earth moves between the Moon and the Sun");
+        // strcpy(questions[numQuestions].answer[2], "c) Mars moves between the Sun and the Earth");
+        // strcpy(questions[numQuestions].answer[3], "d) The Sun moves between the Earth and the Moon");
+        // questions[numQuestions].correct_answer = 1;
+        // numQuestions++;
 
-            for (j = 0; j < 4; j++)
-            {
+        // strcpy(questions[numQuestions].question, "Our planet sits within the Solar System which sits within a galaxy. What is this galaxy called?");
+        // strcpy(questions[numQuestions].answer[0], "a) Andromeda Galaxy");
+        // strcpy(questions[numQuestions].answer[1], "b) Cigar Galaxy");
+        // strcpy(questions[numQuestions].answer[2], "c) Eye of Sauron");
+        // strcpy(questions[numQuestions].answer[3], "d) Milky Way");
+        // questions[numQuestions].correct_answer = 4;
+        // numQuestions++;
 
-                printf("%s\n", question[i].answers[j]);
-            }
+        // // use a loop to print out questions and answers
+        // for (i = 0; i < numQuestions; i++)
+        // {
 
-            printf("\nEnter answer(use 1 to 4): ");
-            scanf("%d", &user_answer);
+        //     printf("\n%d. %s\n\n", i + 1, questions[i].question);
+        //     for (j = 0; j < SLOT; j++)
+        //     {
 
-            if (user_answer == question[i].correct_answer)
-            {
+        //         printf("%s\n", questions[i].answer[j]);
+        //     }
 
-                printf("\nCORRECT!!\n");
-                points += 5;
-                printf("\nYou scored %d points\n", points);
-            }
-            else
-            {
+        //     printf("\nEnter correct answer (use 1 to 4): ");
+        //     scanf("%d", &user_answer);
 
-                printf("Incorrect, The correct answer is %s.\n", question[i].answers[question[i].correct_answer]);
-                points -= 5;
-                printf("\nYou scored %d points\n", points);
-            }
-        }
+        //     if (user_answer == questions[i].correct_answer)
+        //     {
 
-        time(&endTime);
-        elaspedTime = difftime(endTime, startTime);
+        //         printf("\nCORRECT!\n");
+        //         points += 5;
+        //         printf("\nYou've scored %d points\n", points);
+        //     }
+        //     else
+        //     {
 
-        if (elaspedTime > limitTime)
-        {
+        //         printf("\nIncorrect!. The answer is %s\n", questions[i].answer[questions[i].correct_answer]);
+        //         points -= 5;
+        //         printf("\nYou've scored %d points\n", points);
+        //     }
+        // }
 
-            printf("Time Up!\n");
-        }
-        else
-        {
-
-            printf("\nQuiz completed in %.2f seconds\n", elaspedTime);
-        }
+        setQuestion();
     }
-
-    else if (i == 0)
+    else if (selection == 0)
     {
-        printf("\nYou have exited the game\n\n");
-        return 0;
+
+        printf("\nYou've exit game\n");
     }
     else
     {
 
-        printf("\nInvalid\n\n");
+        printf("\nInvalid");
+        menu();
+        printf("\nEnter selection: ");
+        scanf("%d", &selection);
+        setQuestion();
     }
+}
 
-    return 0;
+int menu()
+{
+
+    // int selection;
+
+    printf("\t\t\t\xB2\xB2\xB2 Welcome to Game \xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+    printf("\nPress 7 to go to quiz\n");
+    printf("Press 0 to quit\n");
+    // printf("\nEnter selection: ");
+    // scanf("%d", &selection);
+}
+
+int setQuestion()
+{
+
+    struct quiz questions[20];
+    int numQuestions = 0;
+    int i, j, selection, user_answer;
+    int points;
+
+    points = 0;
+
+    // set questions to array
+    strcpy(questions[numQuestions].question, "The existence of black holes was predicted by which eminent scientist's 'Theory of General Relativity'?");
+    strcpy(questions[numQuestions].answer[0], "a) Isaac Newton");
+    strcpy(questions[numQuestions].answer[1], "b) Albert Einstein");
+    strcpy(questions[numQuestions].answer[2], "c) Stephen Hawking");
+    strcpy(questions[numQuestions].answer[3], "d) Galileo Galilei");
+    questions[numQuestions].correct_answer = 4;
+    numQuestions++;
+
+    strcpy(questions[numQuestions].question, "A total solar eclipse occurs when…?");
+    strcpy(questions[numQuestions].answer[0], "a) The Moon moves between the Sun and the Earth");
+    strcpy(questions[numQuestions].answer[1], "b) The Earth moves between the Moon and the Sun");
+    strcpy(questions[numQuestions].answer[2], "c) Mars moves between the Sun and the Earth");
+    strcpy(questions[numQuestions].answer[3], "d) The Sun moves between the Earth and the Moon");
+    questions[numQuestions].correct_answer = 1;
+    numQuestions++;
+
+    strcpy(questions[numQuestions].question, "Our planet sits within the Solar System which sits within a galaxy. What is this galaxy called?");
+    strcpy(questions[numQuestions].answer[0], "a) Andromeda Galaxy");
+    strcpy(questions[numQuestions].answer[1], "b) Cigar Galaxy");
+    strcpy(questions[numQuestions].answer[2], "c) Eye of Sauron");
+    strcpy(questions[numQuestions].answer[3], "d) Milky Way");
+    questions[numQuestions].correct_answer = 4;
+    numQuestions++;
+
+    // use a loop to print out questions and answers
+    for (i = 0; i < numQuestions; i++)
+    {
+
+        printf("\n%d. %s\n\n", i + 1, questions[i].question);
+        for (j = 0; j < SLOT; j++)
+        {
+
+            printf("%s\n", questions[i].answer[j]);
+        }
+
+        printf("\nEnter correct answer (use 1 to 4): ");
+        scanf("%d", &user_answer);
+
+        if (user_answer == questions[i].correct_answer)
+        {
+
+            printf("\nCORRECT!\n");
+            points += 5;
+            printf("\nYou've scored %d points\n", points);
+        }
+        else
+        {
+
+            printf("\nIncorrect!. The answer is %s\n", questions[i].answer[questions[i].correct_answer]);
+            points -= 5;
+            printf("\nYou've scored %d points\n", points);
+        }
+    }
 }
